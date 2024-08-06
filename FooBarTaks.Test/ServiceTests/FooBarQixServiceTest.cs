@@ -42,7 +42,7 @@ namespace FooBarTaks.Test.ServiceTests
         public void FooBarService_ReturnFooBar_WhenMultipleOf3and5()
         {
             var number = 15;
-            var expected = "FooBar";
+            var expected = "FooBarBar";
 
             var result = _service.Transform(number);
 
@@ -53,7 +53,7 @@ namespace FooBarTaks.Test.ServiceTests
         public void FooBarService_ReturnQix_WhenMultipleOf7()
         {
             var number = 7;
-            var expected = "Qix";
+            var expected = "QixQix";
 
             var result = _service.Transform(number);
 
@@ -98,6 +98,50 @@ namespace FooBarTaks.Test.ServiceTests
         {
             var number = 1;
             var expected = "1";
+
+            var result = _service.Transform(number);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void FooBarService_ReturnFoo_WhenNumberContains3()
+        {
+            var number = 13;
+            var expected = "Foo";
+
+            var result = _service.Transform(number);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void FooBarService_ReturnBar_WhenNumberContains5()
+        {
+            var number = 52;
+            var expected = "Bar";
+
+            var result = _service.Transform(number);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void FooBarService_ReturnQix_WhenNumberContains7()
+        {
+            var number = 71;
+            var expected = "Qix";
+
+            var result = _service.Transform(number);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void FooBarService_ReturnFooBarQixFooBar_WhenMultipleAndContains()
+        {
+            var number = 357;
+            var expected = "FooBarQixFooBarQix";
 
             var result = _service.Transform(number);
 
