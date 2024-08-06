@@ -25,6 +25,24 @@ namespace FooBarTask.Services
                 result += "Qix";
             }
 
+
+            string numberString = number.ToString();
+            foreach (char digit in numberString)
+            {
+                if (digit == '3')
+                {
+                    result += "Foo";
+                }
+                else if (digit == '5')
+                {
+                    result += "Bar";
+                }
+                else if (digit == '7')
+                {
+                    result += "Qix";
+                }
+            }
+
             return string.IsNullOrEmpty(result) ? number.ToString() : result;
         }
     }
