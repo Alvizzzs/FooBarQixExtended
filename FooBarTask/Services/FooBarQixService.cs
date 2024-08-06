@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FooBarTask.Services
 {
-    public class FooBarService
+    public class FooBarQixService
     {
         public string Transform(int number)
         {
