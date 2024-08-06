@@ -10,22 +10,22 @@ namespace FooBarTask.Services
     {
         public string Transform(int number)
         {
-            if (number % 3 == 0 && number % 5 == 0)
+            string result = string.Empty;
+
+            if (number % 3 == 0)
             {
-                return "FooBar";
+                result += "Foo";
             }
-            else if (number % 3 == 0)
+            if (number % 5 == 0)
             {
-                return "Foo";
+                result += "Bar";
             }
-            else if (number % 5 == 0)
+            if (number % 7 == 0)
             {
-                return "Bar";
+                result += "Qix";
             }
-            else
-            {
-                return number.ToString();
-            }
+
+            return string.IsNullOrEmpty(result) ? number.ToString() : result;
         }
     }
 }
