@@ -16,6 +16,7 @@ namespace FooBarTaks.Test.ServiceTests
             _service = new FooBarQixService();
         }
 
+        //Number Occurance Rules
         [Fact]
         public void FooBarService_ReturnFoo_WhenMultipleOf3()
         {
@@ -104,6 +105,7 @@ namespace FooBarTaks.Test.ServiceTests
             Assert.Equal(expected, result);
         }
 
+        //Contains Digit Rules
         [Fact]
         public void FooBarService_ReturnFoo_WhenNumberContains3()
         {
@@ -131,6 +133,39 @@ namespace FooBarTaks.Test.ServiceTests
         {
             var number = 71;
             var expected = "Qix";
+
+            var result = _service.Transform(number);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void FooBarService_ReturnFooBar_WhenNumberContains3and5()
+        {
+            var number = 35;
+            var expected = "BarQixFooBar";
+
+            var result = _service.Transform(number);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void FooBarService_ReturnFooQix_WhenNumberContains3and7()
+        {
+            var number = 37;
+            var expected = "FooQix";
+
+            var result = _service.Transform(number);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void FooBarQixService_ReturnBarQix_WhenNumberContains5and7()
+        {
+            var number = 57;
+            var expected = "FooBarQix";
 
             var result = _service.Transform(number);
 
