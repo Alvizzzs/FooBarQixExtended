@@ -11,7 +11,6 @@ namespace FooBarTask.Services
         public string Transform(int number)
         {
             string result = string.Empty;
-
             if (number % 8 == 0)
             {
                 result += "Inf;";
@@ -43,7 +42,6 @@ namespace FooBarTask.Services
             }
 
             int digitSum = numberString.Select(n => int.Parse(n.ToString())).Sum();
-
             if (digitSum % 8 == 0)
             {
                 result += "Inf";

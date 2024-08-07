@@ -94,17 +94,6 @@ namespace FooBarTaks.Test.ServiceTests
             Assert.Equal(expected, result);
         }
 
-        [Fact]
-        public void FooBarService_ReturnNumberAsString_WhenNotMultipleOrOccurance()
-        {
-            var number = 1;
-            var expected = "1";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
         //Test For Digit Occurances
         [Fact]
         public void FooBarService_ReturnFoo_WhenNumberContains3()
@@ -171,5 +160,18 @@ namespace FooBarTaks.Test.ServiceTests
 
             Assert.Equal(expected, result);
         }
+
+        // Test For No Digit Occurances or Multiples
+        [Fact]
+        public void FooBarService_ReturnNumberAsString_WhenNotMultipleOrOccurance()
+        {
+            var number = 1;
+            var expected = "1";
+
+            var result = _service.Transform(number);
+
+            Assert.Equal(expected, result);
+        }
+
     }
 }
