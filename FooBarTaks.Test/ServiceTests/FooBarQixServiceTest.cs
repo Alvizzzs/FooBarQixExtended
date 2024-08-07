@@ -16,7 +16,7 @@ namespace FooBarTaks.Test.ServiceTests
             _service = new FooBarQixService();
         }
 
-        //Number Occurance Rules
+        //Test For Multiples
         [Fact]
         public void FooBarService_ReturnFoo_WhenMultipleOf3()
         {
@@ -95,7 +95,7 @@ namespace FooBarTaks.Test.ServiceTests
         }
 
         [Fact]
-        public void FooBarService_ReturnNumberAsString_WhenNotMultipleOf3or5or7()
+        public void FooBarService_ReturnNumberAsString_WhenNotMultipleOrOccurance()
         {
             var number = 1;
             var expected = "1";
@@ -105,7 +105,7 @@ namespace FooBarTaks.Test.ServiceTests
             Assert.Equal(expected, result);
         }
 
-        //Contains Digit Rules
+        //Test For Digit Occurances
         [Fact]
         public void FooBarService_ReturnFoo_WhenNumberContains3()
         {
