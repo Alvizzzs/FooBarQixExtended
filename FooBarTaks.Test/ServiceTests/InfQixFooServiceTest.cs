@@ -110,7 +110,7 @@ namespace FooBarTask.Test.ServiceTests
         public void InfQixFooService_ReturnInf_WhenNumberContains8()
         {
             var number = 28;
-            var expected = "Inf";
+            var expected = "Qix;Inf";
 
             var result = _service.Transform(number);
 
@@ -121,7 +121,7 @@ namespace FooBarTask.Test.ServiceTests
         public void InfQixFooService_ReturnQix_WhenNumberContains7()
         {
             var number = 27;
-            var expected = "Qix";
+            var expected = "Foo;Qix";
 
             var result = _service.Transform(number);
 
@@ -143,7 +143,7 @@ namespace FooBarTask.Test.ServiceTests
         public void InfQixFooService_ReturnInfQix_WhenNumberContains8and7()
         {
             var number = 87;
-            var expected = "InfQix";
+            var expected = "Foo;InfQix";
 
             var result = _service.Transform(number);
 
@@ -165,7 +165,7 @@ namespace FooBarTask.Test.ServiceTests
         public void InfQixFooService_ReturnQixFoo_WhenNumberContains7and3()
         {
             var number = 37;
-            var expected = "QixFoo";
+            var expected = "FooQix";
 
             var result = _service.Transform(number);
 
@@ -177,7 +177,7 @@ namespace FooBarTask.Test.ServiceTests
         public void InfQixFooService_ReturnFooInfQixFoo_WhenMultipleAndContains()
         {
             var number = 378;
-            var expected = "Foo;InfQixFoo";
+            var expected = "Qix;Foo;FooQixInf";
 
             var result = _service.Transform(number);
 
