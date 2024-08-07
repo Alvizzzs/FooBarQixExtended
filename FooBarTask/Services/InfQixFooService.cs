@@ -42,6 +42,13 @@ namespace FooBarTask.Services
                 }
             }
 
+            int digitSum = numberString.Select(n => int.Parse(n.ToString())).Sum();
+
+            if (digitSum % 8 == 0)
+            {
+                result += "Inf";
+            }
+
             if (result.EndsWith(";"))
             {
                 result = result.TrimEnd(';');

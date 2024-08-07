@@ -183,5 +183,28 @@ namespace FooBarTask.Test.ServiceTests
 
             Assert.Equal(expected, result);
         }
+
+        // Test For Sum Of Digits
+        [Fact]
+        public void InfQixFooService_ReturnInfAppended_WhenSumOfDigitsIsMultipleOf8()
+        {
+            var number = 232;
+            var expected = "Inf;Foo";
+
+            var result = _service.Transform(number);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void InfQixFooService_ReturnInfAppended_WhenSumOfDigitsIsMultipleOf8AndContainsInfQixFooRules()
+        {
+            var number = 88;
+            var expected = "Inf;InfInfInf";
+
+            var result = _service.Transform(number);
+
+            Assert.Equal(expected, result);
+        }
     }
 }
