@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FooBarTask.Services;
+using Xunit;
 
 namespace FooBarTaks.Test.ServiceTests
 {
@@ -16,162 +13,45 @@ namespace FooBarTaks.Test.ServiceTests
             _service = new FooBarQixService();
         }
 
-        //Test For Multiples
-        [Fact]
-        public void FooBarService_ReturnFoo_WhenMultipleOf3()
+        //Tests For Multiples
+        [Theory]
+        [InlineData(9, "Foo")]
+        [InlineData(10, "Bar")]
+        [InlineData(15, "FooBarBar")]
+        [InlineData(7, "QixQix")]
+        [InlineData(21, "FooQix")]
+        [InlineData(140, "BarQix")]
+        [InlineData(105, "FooBarQixBar")]
+        public void FooBarService_ReturnsCorrectStringForMultiples(int number, string expected)
         {
-            var number = 9;
-            var expected = "Foo";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void FooBarService_ReturnBar_WhenMultipleOf5()
-        {
-            var number = 10;
-            var expected = "Bar";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void FooBarService_ReturnFooBar_WhenMultipleOf3and5()
-        {
-            var number = 15;
-            var expected = "FooBarBar";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void FooBarService_ReturnQix_WhenMultipleOf7()
-        {
-            var number = 7;
-            var expected = "QixQix";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void FooBarService_ReturnFooQix_WhenMultipleOf3and7()
-        {
-            var number = 21;
-            var expected = "FooQix";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void FooBarService_ReturnBarQix_WhenMultipleOf5and7()
-        {
-            var number = 140;
-            var expected = "BarQix";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void FooBarService_ReturnFooBarQix_WhenMultipleOf3and5and7()
-        {
-            var number = 105;
-            var expected = "FooBarQixBar";
-
             var result = _service.Transform(number);
 
             Assert.Equal(expected, result);
         }
 
         //Test For Digit Occurances
-        [Fact]
-        public void FooBarService_ReturnFoo_WhenNumberContains3()
+        [Theory]
+        [InlineData(13, "Foo")]
+        [InlineData(52, "Bar")]
+        [InlineData(71, "Qix")]
+        [InlineData(35, "BarQixFooBar")]
+        [InlineData(37, "FooQix")]
+        [InlineData(57, "FooBarQix")]
+        public void FooBarService_ReturnsCorrectStringForDigitOccurrences(int number, string expected)
         {
-            var number = 13;
-            var expected = "Foo";
-
             var result = _service.Transform(number);
 
             Assert.Equal(expected, result);
         }
 
-        [Fact]
-        public void FooBarService_ReturnBar_WhenNumberContains5()
+        //Test For No Transformations
+        [Theory]
+        [InlineData(1, "1")]
+        public void FooBarService_ReturnsNumberAsString_WhenNotMultipleOrOccurrence(int number, string expected)
         {
-            var number = 52;
-            var expected = "Bar";
-
             var result = _service.Transform(number);
 
             Assert.Equal(expected, result);
         }
-
-        [Fact]
-        public void FooBarService_ReturnQix_WhenNumberContains7()
-        {
-            var number = 71;
-            var expected = "Qix";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void FooBarService_ReturnFooBar_WhenNumberContains3and5()
-        {
-            var number = 35;
-            var expected = "BarQixFooBar";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void FooBarService_ReturnFooQix_WhenNumberContains3and7()
-        {
-            var number = 37;
-            var expected = "FooQix";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void FooBarQixService_ReturnBarQix_WhenNumberContains5and7()
-        {
-            var number = 57;
-            var expected = "FooBarQix";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
-        // Test For No Digit Occurances or Multiples
-        [Fact]
-        public void FooBarService_ReturnNumberAsString_WhenNotMultipleOrOccurance()
-        {
-            var number = 1;
-            var expected = "1";
-
-            var result = _service.Transform(number);
-
-            Assert.Equal(expected, result);
-        }
-
     }
 }

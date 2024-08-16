@@ -8,51 +8,51 @@ namespace FooBarTask.Services
 {
     public class InfQixFooService
     {
+        private const string separator = ";";
+
+        private static readonly Dictionary<int, string> _multiples = new()
+        {
+            { 8, "Inf" },
+            { 7, "Qix" },
+            { 3, "Foo" }
+        };
+
+        private static readonly Dictionary<char, string> _digits = new()
+        {
+            { '8', "Inf" },
+            { '7', "Qix" },
+            { '3', "Foo" }
+        };
+
         public string Transform(int number)
         {
-            string result = string.Empty;
-            if (number % 8 == 0)
-            {
-                result += "Inf;";
-            }
-            if (number % 7 == 0)
-            {
-                result += "Qix;";
-            }
-            if (number % 3 == 0)
-            {
-                result += "Foo;";
-            }
+            var result = new StringBuilder();
 
-            string numberString = number.ToString();
-            foreach (char digit in numberString)
+            foreach (var (key, value) in _multiples)
             {
-                if (digit == '3')
+                if (number % key == 0)
                 {
-                    result += "Foo";
-                }
-                else if (digit == '8')
-                {
-                    result += "Inf";
-                }
-                else if (digit == '7')
-                {
-                    result += "Qix";
+                    result.Append(value).Append(separator);
                 }
             }
 
-            int digitSum = numberString.Select(n => int.Parse(n.ToString())).Sum();
-            if (digitSum % 8 == 0)
+            var numberString = number.ToString();
+            foreach (var digit in numberString)
             {
-                result += "Inf";
+                if (_digits.TryGetValue(digit, out var value))
+                {
+                    result.Append(value);
+                }
             }
 
-            if (result.EndsWith(";"))
+            if (numberString.Sum(c => c - '0') % 8 == 0)
             {
-                result = result.TrimEnd(';');
+                result.Append("Inf");
             }
 
-            return string.IsNullOrEmpty(result) ? numberString : result;
+            string finalResult = result.ToString().TrimEnd(separator.ToCharArray());
+
+            return string.IsNullOrEmpty(finalResult) ? numberString : finalResult;
         }
     }
 }

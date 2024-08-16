@@ -8,42 +8,41 @@ namespace FooBarTask.Services
 {
     public class FooBarQixService
     {
+        private static readonly Dictionary<int, string> _multiples = new()
+        {
+            { 3, "Foo" },
+            { 5, "Bar" },
+            { 7, "Qix" }
+        };
+
+        private static readonly Dictionary<char, string> _digits = new()
+        {
+            { '3', "Foo" },
+            { '5', "Bar" },
+            { '7', "Qix" }
+        };
+
         public string Transform(int number)
         {
-            string result = string.Empty;
+            var result = new StringBuilder();
 
-            if (number % 3 == 0)
+            foreach (var (key, value) in _multiples)
             {
-                result += "Foo";
-            }
-            if (number % 5 == 0)
-            {
-                result += "Bar";
-            }
-            if (number % 7 == 0)
-            {
-                result += "Qix";
-            }
-
-
-            string numberString = number.ToString();
-            foreach (char digit in numberString)
-            {
-                if (digit == '3')
+                if (number % key == 0)
                 {
-                    result += "Foo";
-                }
-                else if (digit == '5')
-                {
-                    result += "Bar";
-                }
-                else if (digit == '7')
-                {
-                    result += "Qix";
+                    result.Append(value);
                 }
             }
 
-            return string.IsNullOrEmpty(result) ? number.ToString() : result;
+            foreach (char digit in number.ToString())
+            {
+                if (_digits.TryGetValue(digit, out var value))
+                {
+                    result.Append(value);
+                }
+            }
+
+            return result.Length > 0 ? result.ToString() : number.ToString();
         }
     }
 }
